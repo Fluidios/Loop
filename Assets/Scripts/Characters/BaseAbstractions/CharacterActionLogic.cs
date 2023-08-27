@@ -9,6 +9,15 @@ public abstract class CharacterActionLogic
     {
         get { return this.GetType().Name; }
     }
+    /// <summary>
+    /// Does this action run in one frame or asyncroniosly?
+    /// </summary>
     public abstract bool InstantAction { get; }
-    public abstract void ExecuteAction(Character character, Action executionEndsCallback = null);
+    /// <summary>
+    /// Run an action
+    /// </summary>
+    /// <param name="character">character to run an action on</param>
+    /// <param name="executionEndsCallback">would be provided if particular implementation runs asyncroniosly, should be called on the end of action </param>
+    /// <returns></returns>
+    public abstract bool ExecuteAction(Character character, Action executionEndsCallback = null);
 }

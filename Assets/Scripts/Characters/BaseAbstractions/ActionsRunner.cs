@@ -3,15 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sequently execute all actions in the provided plan
+/// </summary>
 public class ActionsRunner
 {
+    /// <summary>
+    /// served character link
+    /// </summary>
     private Character _character;
     private CharacterPlan _currentlyRunningPlan;
     private Action _planExecutionEndsCallback;
+    /// <summary>
+    /// Init runner with character link
+    /// </summary>
+    /// <param name="character"></param>
     public void Init(Character character)
     {
         _character = character;
     }
+
+    /// <summary>
+    /// Execute actions from the plan one by one, if action failed ends execution imidiately
+    /// </summary>
+    /// <param name="plan"></param>
+    /// <param name="executionEnds"></param>
     public void Execute(CharacterPlan plan, Action executionEnds)
     {
         _currentlyRunningPlan = plan;
@@ -25,18 +41,19 @@ public class ActionsRunner
             executionEnds();
         }
     }
-    public void ExecuteAction(CharacterActionLogic action, Action executionEnds)
+    private void ExecuteAction(CharacterActionLogic action, Action executionEnds)
     {
         if (action.InstantAction)
         {
-            action.ExecuteAction(_character, null);
-            ContinuePlanExecution();
+            if (action.ExecuteAction(_character, null))
+                ContinuePlanExecution();
+            else
+                _planExecutionEndsCallback();
         }
         else
             action.ExecuteAction(_character, executionEnds);
 
     }
-
     private void ContinuePlanExecution()
     {
         _currentlyRunningPlan.Actions.RemoveAt(0);
