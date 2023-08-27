@@ -15,8 +15,9 @@ public class DebugSpeakCharacterAction : CharacterActionLogic
         this._speakFormatter = copyFrom._speakFormatter;
     }
     public override bool InstantAction => true;
-    public override void ExecuteAction(Character character, Action executionEndsCallback = null)
+    public override bool ExecuteAction(Character character, Action executionEndsCallback = null)
     {
         Debug.Log(string.Format("{0}({1}):{2}",character.name, character.GetInstanceID(), Phrase));
+        return true;
     }
 }
