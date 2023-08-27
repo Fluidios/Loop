@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3eeb0ca376505448cfc2d0f9b7b7ca, type: 3}
+  m_Name: Deck Preset
+  m_EditorClassIdentifier: 
+  RoadTilesInDeck:
+  - {fileID: 4480945663081273938, guid: dc3312af4fdf0424db3e9c0fcccbd7fd, type: 3}
