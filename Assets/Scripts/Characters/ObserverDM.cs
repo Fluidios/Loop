@@ -10,15 +10,11 @@ public class ObserverDM : DecisionMaker
     public override CharacterPlan DecideBehaviour(Character character)
     {
         List<CharacterActionLogic> actions = new List<CharacterActionLogic>();
-        System.Type filterMemoriesBySensor = typeof(VisualSensor);
-        if(character.Memory.HotMemoryData.TryGetValue(filterMemoriesBySensor, out Dictionary<string, MemoryNote> observablesList))
+        foreach (var item in character.Memory.GetIEnumerableOfCharacters())
         {
-            foreach (var item in observablesList)
-            {
-                var action = new DebugSpeakCharacterAction(_speakAction);
-                action.Phrase = string.Format("I see {0}",item.Value.Type.Name);
-                actions.Add(action);
-            }
+            var action = new DebugSpeakCharacterAction(_speakAction);
+            action.Phrase = string.Format("I see {0}", item.name);
+            actions.Add(action);
         }
         return new CharacterPlan(actions);
     }

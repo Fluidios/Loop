@@ -54,6 +54,10 @@ MonoBehaviour:
   _sensorsList:
   - {fileID: 1872535473252201949}
   _decisionMaker: {fileID: 3683032169662314123}
+  _characterStats:
+    Health:
+      _value: 0
+      _maxValue: 10
 --- !u!114 &1872535473252201949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0e34ddd49e8784592a47f4cca356bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speakAction:
+    _speakFormatter: I see {0}
 --- !u!1 &6239417784025309008
 GameObject:
   m_ObjectHideFlags: 0

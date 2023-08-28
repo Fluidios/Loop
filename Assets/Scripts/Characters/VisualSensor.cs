@@ -14,28 +14,32 @@ public class VisualSensor : Sensor
     {
         if (customWorld == null) return;
 
-        IVisuallyObservable observable;
         int entitiesObserved = 0;
-        string memoryKey;
-        Type sensorType = typeof(VisualSensor);
         foreach (var m in customWorld)
         {
             if (m.gameObject == this.gameObject) continue;
-            observable = m as IVisuallyObservable;
+            //here we determine what we actually seeing
+            var observable = m as IVisuallyObservable;
             if(observable != null)
             {
-                if (entitiesObserved == 0)
-                    character.Memory.HotMemoryData.Add(sensorType, new Dictionary<string, MemoryNote>());
-                var memoryNote = observable.Scan(); 
-                memoryKey = string.Format("{0}-{1}", memoryNote.Type, entitiesObserved);
-                character.Memory.HotMemoryData[sensorType].Add(memoryKey, memoryNote);
-                entitiesObserved++;
+                if (observable.TryScan<Character>(out var observedCharacter))
+                {
+                    character.Memory.Set(observedCharacter.name, observedCharacter);
+                    entitiesObserved++;
+                }
+                else 
+                {
+                    object unknownObservable = observable.Scan();
+                    character.Memory.Set(unknownObservable.GetType().Name, unknownObservable);
+                }
             }
+
         }
     }
 }
 
 public interface IVisuallyObservable
 {
-    public MemoryNote Scan();
+    public bool TryScan<T>(out T value) where T : class;
+    public object Scan();
 }
