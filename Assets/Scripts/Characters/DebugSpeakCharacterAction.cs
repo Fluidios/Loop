@@ -8,11 +8,9 @@ public class DebugSpeakCharacterAction : CharacterActionLogic
 {
     [SerializeField] private string _speakFormatter = "I see {0}";
     public string Phrase { get; set; }
-
-    public DebugSpeakCharacterAction() { }
-    public DebugSpeakCharacterAction(DebugSpeakCharacterAction copyFrom)
+    public void CopyFrom(DebugSpeakCharacterAction action)
     {
-        this._speakFormatter = copyFrom._speakFormatter;
+        _speakFormatter = action._speakFormatter;
     }
     public override bool InstantAction => true;
     public override bool ExecuteAction(Character character, Action executionEndsCallback = null)

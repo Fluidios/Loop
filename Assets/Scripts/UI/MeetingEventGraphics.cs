@@ -1,33 +1,83 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MeetingEventGraphics : RoadEventGraphics
 {
     [SerializeField] private RectTransform[] _playerSideOrigins;
     [SerializeField] private RectTransform[] _npcSideOrigins;
-    public Character[] SpawnNPCs(Character[] npcPrefabs)
+
+    private Character _selectedCharacter;
+    public Character SelectedCharacter
+    {
+        get { return _selectedCharacter; }
+        set
+        {
+            _selectedCharacter = value;
+            if (value != null && _characterSelectedCallback != null)
+            {
+                switch (_sideToSelectCharacter)
+                {
+                    case MeetingEventSide.PlayerSquad:
+                        if(_playerSideCharacters.Contains(value))
+                        {
+                            _characterSelectedCallback(value);
+                            _characterSelectedCallback = null;
+                        }
+                        break;
+                    case MeetingEventSide.EnemiesSquad:
+                        if (_npcSideCharacters.Contains(value))
+                        {
+                            _characterSelectedCallback(value);
+                            _characterSelectedCallback = null;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    private MeetingEventSide _sideToSelectCharacter;
+    private Action<Character> _characterSelectedCallback;
+
+    private HashSet<Character> _playerSideCharacters = new HashSet<Character>();
+    private HashSet<Character> _npcSideCharacters = new HashSet<Character>();
+    public HashSet<Character> SpawnNPCs(Character[] npcPrefabs)
     {
         int size = Mathf.Min(npcPrefabs.Length, _npcSideOrigins.Length);
-        var _npcInstances = new Character[size];
+        Character spawnedCharacter;
+
         for (int i = 0; i < size; i++)
         {
-            _npcInstances[i] = Instantiate(npcPrefabs[i], _npcSideOrigins[i].position, Quaternion.identity, _npcSideOrigins[i]);
-            _npcInstances[i].transform.localScale = Vector3.left*2 + Vector3.one;
+            spawnedCharacter = Instantiate(npcPrefabs[i], _npcSideOrigins[i].position, Quaternion.identity, _npcSideOrigins[i]);
+            spawnedCharacter.transform.localScale = Vector3.left*2 + Vector3.one;
+            (spawnedCharacter as ISelectable).OnSelected += (iselectable) => { SelectedCharacter = iselectable as Character; };
+            _npcSideCharacters.Add(spawnedCharacter);
         }
-        return _npcInstances;
+        return _npcSideCharacters;
     }
-    public Character[] SpawnPlayerSquad(Character[] playerSquadMembers)
+    public HashSet<Character> SpawnPlayerSquad(Character[] playerSquadMembers)
     {
         int size = Mathf.Min(playerSquadMembers.Length, _playerSideOrigins.Length);
-        var _playerSquadMemberInstances = new Character[size];
+        Character spawnedCharacter;
         for (int i = 0; i < size; i++)
         {
-            _playerSquadMemberInstances[i] = Instantiate(playerSquadMembers[i], _playerSideOrigins[i].position, Quaternion.identity, _playerSideOrigins[i]);
-            _playerSquadMemberInstances[i].transform.localScale = Vector3.one;
+            spawnedCharacter = Instantiate(playerSquadMembers[i], _playerSideOrigins[i].position, Quaternion.identity, _playerSideOrigins[i]);
+            spawnedCharacter.transform.localScale = Vector3.one;
+            (spawnedCharacter as ISelectable).OnSelected += (iselectable) => { SelectedCharacter = iselectable as Character; };
+            _playerSideCharacters.Add(spawnedCharacter);
         }
-        return _playerSquadMemberInstances;
+        return _playerSideCharacters;
+    }
+    public void StartTargetCharacterSelection(MeetingEventSide whichSideToSearchForTarget, Action<Character> onTargetSelected)
+    {
+        _sideToSelectCharacter = whichSideToSearchForTarget;
+        _characterSelectedCallback = onTargetSelected;
+    }
+    public void EndTargetCharacterSelection()
+    {
+        _characterSelectedCallback = null;
     }
 
     private void OnDrawGizmosSelected()

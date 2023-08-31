@@ -51,7 +51,10 @@ public class ActionsRunner
                 _planExecutionEndsCallback();
         }
         else
-            action.ExecuteAction(_character, executionEnds);
+        {
+            if (!action.ExecuteAction(_character, ContinuePlanExecution))
+                _planExecutionEndsCallback();
+        }
 
     }
     private void ContinuePlanExecution()

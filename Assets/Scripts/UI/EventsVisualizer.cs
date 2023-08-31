@@ -6,12 +6,15 @@ using UnityEngine;
 public class EventsVisualizer : GameSystem
 {
     [SerializeField] private RectTransform _defaultAnchor;
+    [SerializeField] private RectTransform _leftBottomUiAnchor;
     public override bool AsyncInitialization => false;
-
+    public RoadEventGraphics ActiveEventGraphics { get; private set; }
+   
     public T ShowEventVisual<T>(T eventVisualPrefab) where T : RoadEventGraphics
     {
         var visual = Instantiate(eventVisualPrefab, transform);
         StartCoroutine(MoveEventVisual(true, visual.RectTransform));
+        ActiveEventGraphics = visual;
         return visual;
     }
     public void HideEventVisual<T>(T spawnedEventVisual, Action callback) where T : RoadEventGraphics
@@ -20,6 +23,11 @@ public class EventsVisualizer : GameSystem
             callback();
             Destroy(spawnedEventVisual.gameObject);
         }));
+        ActiveEventGraphics = null;
+    }
+    public CharacterCombatUi AddUI(CharacterCombatUi prefab)
+    {
+        return Instantiate(prefab, _leftBottomUiAnchor);
     }
 
     IEnumerator MoveEventVisual(bool show, RectTransform visual, Action callback = null)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,5 +14,5 @@ public abstract class DecisionMaker : MonoBehaviour
     /// </summary>
     /// <param name="character"></param>
     /// <returns></returns>
-    public abstract CharacterPlan DecideBehaviour(Character character);
+    public abstract void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds);
 }

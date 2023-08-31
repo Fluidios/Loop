@@ -209,7 +209,6 @@ MonoBehaviour:
   - {fileID: 1276184576229541635}
   - {fileID: 1068018047977803904}
   - {fileID: 6567877601282348003}
-  _memberRequiredSpace: 80
 --- !u!1 &4624532535402937515
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CharacterActionLogic
+public abstract class CharacterActionLogic : MonoBehaviour
 {
     public string Name
     {
