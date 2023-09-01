@@ -21,7 +21,7 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
 
         _allCharacters = characters.ToArray();
 
-        StartCoroutine(DoWithDelay(1.5f, UpdateEvent));
+        StartCoroutine(DoWithDelay(2.5f, UpdateEvent));
     }
 
     private void UpdateEvent()
@@ -41,7 +41,7 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
     }
     IEnumerator DoWithDelay(float delay, Action action)
     {
-        yield return delay;
+        yield return new WaitForSeconds(delay);
         action();
     }
 }

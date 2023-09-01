@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class AttackSelectedUnit : CharacterActionLogic, IDemandTarget<Character>
 {
-    [SerializeField] private MeetingEventSide _searchForTargetAtSide; 
+    [SerializeField] private MeetingEventSide _searchForTargetAtSide;
+    [SerializeField] private Animate _animate;
+    [SerializeField] private int _damage = 1;
     private Character _target;
     public MeetingEventSide WhichSideToSearchForTarget { get { return _searchForTargetAtSide; } }
     public Character Target { get { return _target; } set { _target = value; } }
@@ -19,7 +21,9 @@ public class AttackSelectedUnit : CharacterActionLogic, IDemandTarget<Character>
 
     IEnumerator Hit(Action executionEndsCallback)
     {
-        yield return new WaitForSeconds(1);
+        _animate.SelectedAnimation = "Attack";
+        yield return _animate.AnimateSelectedClip();
+        _target.Stats.Health.Value -= _damage;
         executionEndsCallback();
     }
 }

@@ -11,16 +11,20 @@ public class UiDependentDM : DecisionMaker
     Action<CharacterPlan> _planDecidedCallback;
     private CharacterActionLogic _selectedAction;
     private IDemandTarget<Character> _selectedActionAsInteface;
+    private CharacterCombatUi _ui;
     public override void Init(Character character)
     {
         _visualizer = SystemsManager.GetSystemOfType<EventsVisualizer>();
-        var spawnedUI = _visualizer.AddUI(_uiPrefab);
-        spawnedUI.Init(character.name, _availableActions, ConfirmAction);
-
+        _ui = _visualizer.AddUI(_uiPrefab);
+        _ui.Init(character.name, _availableActions, ConfirmAction);
+        _ui.gameObject.SetActive(false);
     }
     public override void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds)
     {
+        _planDecidedCallback = null;
         _planDecidedCallback = decisionProcessEnds;
+        _planDecidedCallback += (plan) => _ui.gameObject.SetActive(false);
+        _ui.gameObject.SetActive(true);
     }
     private void ConfirmAction(CharacterActionLogic selectedAction)
     {

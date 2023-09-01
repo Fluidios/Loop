@@ -34,6 +34,8 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
         get { return _personalMemory;}
     }
 
+    public CharacterStats Stats { get { return _characterStats; } }
+
     private bool _focused;
     public bool Focused => _focused;
 
@@ -62,6 +64,8 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
     /// <param name="customWorld">if we want character to run in limited environment - provide a list of all entities</param>
     public void UpdateLogic(Action updateEnds, MonoBehaviour[] customWorld = null)
     {
+        if (Stats.Health.Value <= 0) { Debug.Log(gameObject.name + " is dead."); updateEnds(); return; }
+
         _unitLogicUpdateEndsCallback = updateEnds;
         _personalMemory.Clear();
         foreach (var sensor in _sensorsList)
@@ -73,7 +77,13 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
 
     private void RunDecidedPlan(CharacterPlan plan)
     {
-        _actionsRunner.Execute(plan, _unitLogicUpdateEndsCallback);
+        if (plan != null)
+            _actionsRunner.Execute(plan, _unitLogicUpdateEndsCallback);
+        else
+        {
+            Debug.Log(gameObject.name + " - failed to produce a plan of actions to do.");
+            _unitLogicUpdateEndsCallback();
+        }
     }
 
     #region IVisuallyObservable
