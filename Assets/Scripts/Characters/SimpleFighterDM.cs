@@ -14,7 +14,9 @@ public class SimpleFighterDM : DecisionMaker
         _attackAction.Target = null;
         foreach (var charactersInSight in character.Memory.GetIEnumerableOfCharacters())
         {
-            if(charactersInSight.name != character.name)
+            if (charactersInSight.Stats.IsDead) continue;
+
+            if (charactersInSight.name != character.name)
             {
                 _attackAction.Target = charactersInSight;
                 break;

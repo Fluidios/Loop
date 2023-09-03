@@ -18,6 +18,8 @@ public class MeetingEventGraphics : RoadEventGraphics
             _selectedCharacter = value;
             if (value != null && _characterSelectedCallback != null)
             {
+                if (value.Stats.IsDead == _searchAmongAliveTargets) return;
+
                 switch (_sideToSelectCharacter)
                 {
                     case MeetingEventSide.PlayerSquad:
@@ -39,6 +41,7 @@ public class MeetingEventGraphics : RoadEventGraphics
         }
     }
     private MeetingEventSide _sideToSelectCharacter;
+    private bool _searchAmongAliveTargets;
     private Action<Character> _characterSelectedCallback;
 
     private HashSet<Character> _playerSideCharacters = new HashSet<Character>();
@@ -70,9 +73,10 @@ public class MeetingEventGraphics : RoadEventGraphics
         }
         return _playerSideCharacters;
     }
-    public void StartTargetCharacterSelection(MeetingEventSide whichSideToSearchForTarget, Action<Character> onTargetSelected)
+    public void StartTargetCharacterSelection(MeetingEventSide whichSideToSearchForTarget, bool searchAmongAliveTargets, Action<Character> onTargetSelected)
     {
         _sideToSelectCharacter = whichSideToSearchForTarget;
+        _searchAmongAliveTargets = searchAmongAliveTargets;
         _characterSelectedCallback = onTargetSelected;
     }
     public void EndTargetCharacterSelection()

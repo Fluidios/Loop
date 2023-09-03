@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IDemandTarget<T> where T : class
 {
     public MeetingEventSide WhichSideToSearchForTarget { get; }
+    public bool TargetMustBeAlive { get; }
     public T Target { get; set; }
 }
 

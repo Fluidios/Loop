@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _searchForTargetAtSide: 0
   _animate: {fileID: 7710562805820320515}
-  _damage: 1
+  _damage: 4
 --- !u!114 &7710562805820320515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: bf2f4f5462897fe48a7ba335bbdd2322, type: 2}
   - {fileID: 7400000, guid: d92516fcc796e9845b3e693e049bdec2, type: 2}
   - {fileID: 7400000, guid: 6967ee94792405f418e17ac87fd3b8ef, type: 2}
+  - {fileID: 7400000, guid: 4ba0307980e9bf346a62b7fea2c15251, type: 2}
 --- !u!1 &6239417784025309008
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1083388162, guid: cdc570a6bb2d565428ada4b31667f46d, type: 3}
+  m_Sprite: {fileID: -1592831588, guid: cdc570a6bb2d565428ada4b31667f46d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

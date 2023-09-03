@@ -6,6 +6,10 @@ using UnityEngine;
 public class CharacterStats
 {
     public CappedObservableValue<int> Health;
+    public bool IsDead
+    {
+        get { return (Health.Value < 1); }
+    }
 
     public void Reset()
     {

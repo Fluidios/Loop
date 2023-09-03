@@ -7,6 +7,7 @@ public class UiDependentDM : DecisionMaker
 {
     [SerializeField] private CharacterCombatUi _uiPrefab;
     [SerializeField] private CharacterActionLogic[] _availableActions;
+    [SerializeField] private bool _debugMode = true;
     private EventsVisualizer _visualizer;
     Action<CharacterPlan> _planDecidedCallback;
     private CharacterActionLogic _selectedAction;
@@ -28,8 +29,10 @@ public class UiDependentDM : DecisionMaker
     }
     private void ConfirmAction(CharacterActionLogic selectedAction)
     {
-        Debug.Log(selectedAction.Name + " - selected.");
+        if(_debugMode) Debug.Log(selectedAction.Name + " - selected.");
+        
         _selectedActionAsInteface = selectedAction as IDemandTarget<Character>;
+        
         if (_selectedActionAsInteface != null)
         {
             _selectedAction = selectedAction;
@@ -38,7 +41,7 @@ public class UiDependentDM : DecisionMaker
                 var meetingEventVisual = _visualizer.ActiveEventGraphics as MeetingEventGraphics;
                 if (meetingEventVisual != null)
                 {
-                    meetingEventVisual.StartTargetCharacterSelection(_selectedActionAsInteface.WhichSideToSearchForTarget, ConfirmTargetCharacter);
+                    meetingEventVisual.StartTargetCharacterSelection(_selectedActionAsInteface.WhichSideToSearchForTarget, _selectedActionAsInteface.TargetMustBeAlive, ConfirmTargetCharacter);
                 }
                 else
                     throw new Exception("Active event graphics is not a meeting event graphics!");
@@ -51,7 +54,8 @@ public class UiDependentDM : DecisionMaker
     }
     private void ConfirmTargetCharacter(Character selectedCharacter)
     {
-        Debug.Log("Target for action " +_selectedAction.Name + " - selected: "+ selectedCharacter.name);
+        if(_debugMode) Debug.Log("Target for action " +_selectedAction.Name + " - selected: "+ selectedCharacter.name);
+        
         _selectedActionAsInteface.Target = selectedCharacter;
         _planDecidedCallback(new CharacterPlan(_selectedAction));
     }

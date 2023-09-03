@@ -20,7 +20,7 @@ public class Animate : CharacterActionLogic
         {
             _animations[clip.name] = clip;
         }
-        _myCharacter.Stats.Health.Subscribe((val) => _animator.Play("Hitted"));
+        _myCharacter.Stats.Health.Subscribe((val) => StartCoroutine(PlayHitted(val)));
     }
 
     public override bool ExecuteAction(Character character, Action executionEndsCallback = null)
@@ -40,5 +40,12 @@ public class Animate : CharacterActionLogic
         yield return new WaitForSeconds(_animations[SelectedAnimation].length);
         if(executionEndsCallback != null) 
             executionEndsCallback();
+    }
+    public IEnumerator PlayHitted(int currentHP)
+    {
+        _animator.Play("Hitted");
+        yield return new WaitForSeconds(_animations["Hitted"].length);
+        if (currentHP <= 0)
+            _animator.Play("Death");
     }
 }

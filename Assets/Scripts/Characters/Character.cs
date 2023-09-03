@@ -64,7 +64,7 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
     /// <param name="customWorld">if we want character to run in limited environment - provide a list of all entities</param>
     public void UpdateLogic(Action updateEnds, MonoBehaviour[] customWorld = null)
     {
-        if (Stats.Health.Value <= 0) { Debug.Log(gameObject.name + " is dead."); updateEnds(); return; }
+        if (Stats.IsDead) { Debug.Log(gameObject.name + " is dead."); updateEnds(); return; }
 
         _unitLogicUpdateEndsCallback = updateEnds;
         _personalMemory.Clear();
@@ -107,7 +107,6 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
     {
         _focused = true;
         OnSelected(this);
-        Debug.Log("Click");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

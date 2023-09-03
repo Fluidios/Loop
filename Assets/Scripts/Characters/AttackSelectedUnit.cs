@@ -10,6 +10,7 @@ public class AttackSelectedUnit : CharacterActionLogic, IDemandTarget<Character>
     [SerializeField] private int _damage = 1;
     private Character _target;
     public MeetingEventSide WhichSideToSearchForTarget { get { return _searchForTargetAtSide; } }
+    public bool TargetMustBeAlive => true;
     public Character Target { get { return _target; } set { _target = value; } }
     public override bool InstantAction => false;
 
