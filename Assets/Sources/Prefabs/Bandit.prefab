@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c9b60ce80d2994da66cd7f9bab46f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speachAction: {fileID: 6470244959196180350}
   _attackAction: {fileID: 410844313311175242}
 --- !u!1 &5773044425211344303
 GameObject:
@@ -173,6 +174,7 @@ GameObject:
   - component: {fileID: 6189513686437666710}
   - component: {fileID: 410844313311175242}
   - component: {fileID: 7710562805820320515}
+  - component: {fileID: 6470244959196180350}
   m_Layer: 5
   m_Name: Actions
   m_TagString: Untagged
@@ -233,6 +235,20 @@ MonoBehaviour:
   - {fileID: 7400000, guid: d92516fcc796e9845b3e693e049bdec2, type: 2}
   - {fileID: 7400000, guid: 6967ee94792405f418e17ac87fd3b8ef, type: 2}
   - {fileID: 7400000, guid: 4ba0307980e9bf346a62b7fea2c15251, type: 2}
+--- !u!114 &6470244959196180350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5773044425211344303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8626b582aeff40c4693fbc7b6fbdf07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speakFormatter: '{0}'
+  _speachBublePrefab: {fileID: -4328128865552819205, guid: c42f72640d9591544a49b68f9529e444, type: 3}
 --- !u!1 &6239417784025309008
 GameObject:
   m_ObjectHideFlags: 0

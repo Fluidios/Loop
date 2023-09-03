@@ -10,6 +10,10 @@ public class CharacterStats
     {
         get { return (Health.Value < 1); }
     }
+    public bool BelongToPlayerTeam
+    {
+        get; set;
+    }
 
     public void Reset()
     {

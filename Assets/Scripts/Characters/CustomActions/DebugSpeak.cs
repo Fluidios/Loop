@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DebugSpeakCharacterAction : CharacterActionLogic
+public class DebugSpeak : CharacterActionLogic
 {
     [SerializeField] private string _speakFormatter = "I see {0}";
     public string Phrase { get; set; }
-    public void CopyFrom(DebugSpeakCharacterAction action)
+    public void CopyFrom(DebugSpeak action)
     {
         _speakFormatter = action._speakFormatter;
     }

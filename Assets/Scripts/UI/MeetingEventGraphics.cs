@@ -1,3 +1,4 @@
+using log4net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,6 +73,32 @@ public class MeetingEventGraphics : RoadEventGraphics
             _playerSideCharacters.Add(spawnedCharacter);
         }
         return _playerSideCharacters;
+    }
+    public T AddUiForNPC<T>(Character npc, T uiPrefab) where T : MonoBehaviour
+    {
+        if (_npcSideCharacters.Contains(npc))
+        {
+            T ui = Instantiate(uiPrefab, npc.transform.parent);
+            RectTransform uiRect = ui.GetComponent<RectTransform>();
+            uiRect.localPosition = Vector3.Scale(uiRect.localPosition, new Vector3(-1,1,1));
+            return ui;
+        }
+        else
+        {
+            throw new Exception("Cant add ui. Provided character is not on the scene!");
+        }
+    }
+    public T AddUiForPlayer<T>(Character player, T uiPrefab) where T : MonoBehaviour
+    {
+        if (_playerSideCharacters.Contains(player))
+        {
+            T ui = Instantiate(uiPrefab, player.transform.parent);
+            return ui;
+        }
+        else
+        {
+            throw new Exception("Cant add ui. Provided character is not on the scene!");
+        }
     }
     public void StartTargetCharacterSelection(MeetingEventSide whichSideToSearchForTarget, bool searchAmongAliveTargets, Action<Character> onTargetSelected)
     {

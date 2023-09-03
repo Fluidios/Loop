@@ -23,6 +23,8 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
         EventNpcMembers = graphics.SpawnNPCs(_eventNpcMembers);
         EventPlayerSideMembers = graphics.SpawnPlayerSquad(PlayerController.PlayerSquadPrefabs);
         
+        foreach (Character character in EventPlayerSideMembers) { character.Stats.BelongToPlayerTeam = true; }
+
         characters.AddRange(EventNpcMembers);
         characters.AddRange(EventPlayerSideMembers);
 

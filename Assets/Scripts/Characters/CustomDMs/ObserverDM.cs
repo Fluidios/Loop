@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ObserverDM : DecisionMaker
 {
-    [SerializeField] private DebugSpeakCharacterAction _speakAction;
+    [SerializeField] private DebugSpeak _speakAction;
     public override void Init(Character character) { }
     public override void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds)
     {
