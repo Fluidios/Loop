@@ -199,6 +199,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Humans_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43979118d7a1084bbd0e263b1b52f5e
+      internalID: 292961102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Humans_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb1e959a07982c4c8aa8654048e7392
+      internalID: 143807347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -215,6 +257,8 @@ TextureImporter:
       Humans_2: 1083388162
       Humans_3: -1592831588
       Humans_4: 53124384
+      Humans_5: 292961102
+      Humans_6: 143807347
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
