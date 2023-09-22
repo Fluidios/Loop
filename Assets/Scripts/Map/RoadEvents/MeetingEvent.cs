@@ -61,7 +61,7 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
     IEnumerator UpdateEventRoutine()
     {
         yield return _timerBetweenUnitsUpdate;
-        _allCharacters[_currentCharacter].UpdateLogic(UpdateEvent, _allCharacters);
+        _allCharacters[_currentCharacter].Ai.UpdateLogic(UpdateEvent, _allCharacters);
         _currentCharacter = (_currentCharacter + 1) % _allCharacters.Length;
     }
     IEnumerator DoWithDelay(float delay, Action action)

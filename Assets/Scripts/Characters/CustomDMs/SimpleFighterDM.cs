@@ -12,7 +12,7 @@ public class SimpleFighterDM : DecisionMaker
     public override void Init(Character character)
     {
     }
-    public override void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds)
+    public override void DecideBehaviour(CharacterAi character, Action<CharacterPlan> decisionProcessEnds)
     {
         if (TryShowInitialPhrase())
         {
@@ -35,7 +35,7 @@ public class SimpleFighterDM : DecisionMaker
         _speachAction.Phrase = "Prepare to die!";
         return true;
     }
-    private bool TryFindTargetToAttack(Character character)
+    private bool TryFindTargetToAttack(CharacterAi character)
     {
         _attackAction.Target = null;
         foreach (var charactersInSight in character.Memory.GetIEnumerableOfCharacters())

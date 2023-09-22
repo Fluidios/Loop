@@ -14,5 +14,5 @@ public abstract class DecisionMaker : MonoBehaviour
     /// </summary>
     /// <param name="character"></param>
     /// <returns></returns>
-    public abstract void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds);
+    public abstract void DecideBehaviour(CharacterAi character, Action<CharacterPlan> decisionProcessEnds);
 }

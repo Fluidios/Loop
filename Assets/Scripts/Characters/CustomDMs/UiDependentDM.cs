@@ -20,7 +20,7 @@ public class UiDependentDM : DecisionMaker
         _ui.Init(character.name, _availableActions, ConfirmAction);
         _ui.gameObject.SetActive(false);
     }
-    public override void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds)
+    public override void DecideBehaviour(CharacterAi character, Action<CharacterPlan> decisionProcessEnds)
     {
         _planDecidedCallback = null;
         _planDecidedCallback = decisionProcessEnds;

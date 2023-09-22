@@ -8,7 +8,7 @@ public class ObserverDM : DecisionMaker
 {
     [SerializeField] private DebugSpeak _speakAction;
     public override void Init(Character character) { }
-    public override void DecideBehaviour(Character character, Action<CharacterPlan> decisionProcessEnds)
+    public override void DecideBehaviour(CharacterAi character, Action<CharacterPlan> decisionProcessEnds)
     {
         List<CharacterActionLogic> actions = new List<CharacterActionLogic>();
         foreach (var item in character.Memory.GetIEnumerableOfCharacters())

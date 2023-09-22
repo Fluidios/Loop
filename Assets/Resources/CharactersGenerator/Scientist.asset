@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae859b6de5fedf4ea2c4d62856a442a, type: 3}
+  m_Name: Scientist
+  m_EditorClassIdentifier: 
+  Dependency: 05000000000000000200000003000000010000004e0000003b000000600000000c000000040000005e00000004000000
+  PersonalityValues:
+  - {fileID: 11400000, guid: 8040e8d2003450e49badcfd9f46ec7a1, type: 2}
+  Habitats: []

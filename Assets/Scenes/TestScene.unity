@@ -120,6 +120,188 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &730030027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730030031}
+  - component: {fileID: 730030030}
+  - component: {fileID: 730030029}
+  - component: {fileID: 730030028}
+  m_Layer: 0
+  m_Name: Strong Network
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &730030028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730030027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd34f95fcc3440c4f8ca2142a868751e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs:
+  - Name: Vodka
+    Value: 1
+  - Name: Rain
+    Value: 1
+  - Name: Friend
+    Value: 0
+--- !u!114 &730030029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730030027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d96a491ebb2c049ac0cd2623d23386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs:
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 0
+    - Name: Rain
+      Value: 0
+    - Name: Friend
+      Value: 0
+  - _expectedAnswer: 1
+    InputData:
+    - Name: Vodka
+      Value: 0
+    - Name: Rain
+      Value: 0
+    - Name: Friend
+      Value: 1
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 0
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 0
+  - _expectedAnswer: 1
+    InputData:
+    - Name: Vodka
+      Value: 0
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 1
+  - _expectedAnswer: 1
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 0
+    - Name: Friend
+      Value: 0
+  - _expectedAnswer: 1
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 0
+    - Name: Friend
+      Value: 1
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 0
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 1
+  _learnRate: 2
+  _learnInOneFrame: 0
+--- !u!114 &730030030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730030027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b599fc133c0e8ab4fa682b80e147ed16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs: []
+  _netLayers:
+  - _neurons:
+    - _name: 'Neuron 0: [0,13,0,8,0,27] = 0'
+      _weights:
+      - 0.13
+      - 0.8
+      - 0.27
+      _inputs:
+      - 1
+      - 1
+      - 0
+      _weightedInputs: 1.1781154
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
+    - _name: 'Neuron 1: [0,93,0,39,0,57] = 0'
+      _weights:
+      - 0.93
+      - 0.39
+      - 0.57
+      _inputs:
+      - 1
+      - 1
+      - 0
+      _weightedInputs: 1.28
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
+  - _neurons:
+    - _name: 'Neuron 0: [0,17,0,01] = 0'
+      _weights:
+      - 0.17
+      - 0.01
+      _inputs:
+      - 0.7646088
+      - 0.7824498
+      _weightedInputs: -0.025528673
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
+--- !u!4 &730030031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730030027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 925.2275, y: 581.62317, z: -0.66827345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505024399
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +404,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2013889991}
   - component: {fileID: 2013889990}
+  - component: {fileID: 2013889992}
+  - component: {fileID: 2013889993}
   m_Layer: 0
   m_Name: Network
   m_TagString: Untagged
@@ -241,30 +425,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b599fc133c0e8ab4fa682b80e147ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputs:
-  - Name: Vodka
-    Value: 1
-  - Name: Rain
-    Value: 1
-  - Name: Friend
-    Value: 1
+  _inputs: []
   _netLayers:
   - _neurons:
-    - _name: 'Neuron 0: [0,25,0,25,0]'
+    - _name: 'Neuron 0: [0,13,0,8,0,27] = 0'
       _weights:
-      - 0.25
-      - 0.25
-      - 0
-    - _name: 'Neuron 1: [0,5,-0,4,0,9]'
-      _weights:
-      - 0.5
-      - -0.4
-      - 0.9
-  - _neurons:
-    - _name: 'Neuron 0: [-1,1]'
-      _weights:
-      - -1
+      - 0.13
+      - 0.8
+      - 0.27
+      _inputs:
       - 1
+      - 1
+      - 0
+      _weightedInputs: 1.1781154
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
+    - _name: 'Neuron 1: [0,93,0,39,0,57] = 0'
+      _weights:
+      - 0.93
+      - 0.39
+      - 0.57
+      _inputs:
+      - 1
+      - 1
+      - 0
+      _weightedInputs: 1.28
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
+  - _neurons:
+    - _name: 'Neuron 0: [0,17,0,01] = 0'
+      _weights:
+      - 0.17
+      - 0.01
+      _inputs:
+      - 0.7646088
+      - 0.7824498
+      _weightedInputs: -0.025528673
+      _calculatedValue: 0
+      _activationFunctionDescription: Sigmoid
 --- !u!4 &2013889991
 Transform:
   m_ObjectHideFlags: 0
@@ -280,9 +478,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2013889992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013889989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d96a491ebb2c049ac0cd2623d23386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs:
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 0
+  - _expectedAnswer: 0
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 1
+    - Name: Friend
+      Value: 1
+  - _expectedAnswer: 1
+    InputData:
+    - Name: Vodka
+      Value: 1
+    - Name: Rain
+      Value: 0
+    - Name: Friend
+      Value: 1
+  _learnRate: 2
+  _learnInOneFrame: 0
+--- !u!114 &2013889993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013889989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd34f95fcc3440c4f8ca2142a868751e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputs:
+  - Name: Vodka
+    Value: 1
+  - Name: Rain
+    Value: 1
+  - Name: Friend
+    Value: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1505024402}
   - {fileID: 2013889991}
+  - {fileID: 730030031}

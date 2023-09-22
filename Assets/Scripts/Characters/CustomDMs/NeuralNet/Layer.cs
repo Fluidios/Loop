@@ -1,4 +1,6 @@
 using NaughtyAttributes;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.NeuralNet
@@ -7,9 +9,13 @@ namespace Game.NeuralNet
     public struct Layer
     {
         [SerializeField, ReadOnly] private Neuron[] _neurons;
-        public int NeuronsCount { get { return _neurons.Length; } }
 
-        public Layer(float[][] initialNeuronWeights, ActivationFunctionDelegate activationFunction)
+        public float this[int index]
+        {
+            get { return _neurons[index].CalculatedValue; }
+        }
+
+        public Layer(float[][] initialNeuronWeights, ActivationFunctionBase activationFunction)
         {
             _neurons = new Neuron[initialNeuronWeights.GetLength(0)];
 
@@ -19,9 +25,9 @@ namespace Game.NeuralNet
             }
         }
 
-        public float[] Run(float[] inputSignals)
+        public float[] Run(float[] inputSignals, bool debug = true)
         {
-            Debug.Log("Layer inputs: " + ArrayToString(inputSignals));
+            if(debug) Debug.Log("Layer inputs: " + ArrayToString(inputSignals));
 
             float[] layerOutput = new float[_neurons.Length];
 
@@ -29,16 +35,29 @@ namespace Game.NeuralNet
             {
                 layerOutput[i] = _neurons[i].Run(inputSignals);
             }
-            Debug.Log("Layer outputs: " + ArrayToString(layerOutput));
+            if(debug) Debug.Log("Layer outputs: " + ArrayToString(layerOutput));
             return layerOutput;
+        }
+        public float[] Learn(float[] errors, float learningRate = 1, bool debug = true)
+        {
+            //we expecting that every neron in layer will produce the same errors array since they would get same outputs from previous layer?
+            //or we should get average from each neuron?
+            return _neurons[0].Learn(errors[0], learningRate, debug);
         }
 
         private string ArrayToString(float[] array)
         {
             string output = string.Empty;
-            foreach (var item in array) output += string.Format("{0},", item);
+            foreach (var item in array) output += string.Format("{0};", item);
 
             return output;
+        }
+        public void Refresh()
+        {
+            for (int i = 0; i < _neurons.Length; i++)
+            {
+                _neurons[i].Refresh();
+            }
         }
     }
 }

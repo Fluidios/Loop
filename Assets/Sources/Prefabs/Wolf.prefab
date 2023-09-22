@@ -344,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1163342202712917797}
   - component: {fileID: 4885558151891188387}
+  - component: {fileID: -8702934615174424267}
   - component: {fileID: 2615884535369569059}
   - component: {fileID: 4334366730872950614}
   m_Layer: 5
@@ -388,14 +389,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a63b2b4cf364d8478883894a75d823a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensorsList:
-  - {fileID: 2615884535369569059}
-  _decisionMaker: {fileID: 4334366730872950614}
+  _ai: {fileID: -8702934615174424267}
   _characterStats:
     Health:
       _value: 1
       _maxValue: 1
   _focusedOutline: {fileID: 621442826069768654}
+--- !u!114 &-8702934615174424267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903468401864521979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15506ca35c9570498cf58a0dd344d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sensorsList:
+  - {fileID: 2615884535369569059}
+  _decisionMaker: {fileID: 4334366730872950614}
 --- !u!114 &2615884535369569059
 MonoBehaviour:
   m_ObjectHideFlags: 0

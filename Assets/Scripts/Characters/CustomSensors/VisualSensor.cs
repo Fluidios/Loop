@@ -8,9 +8,9 @@ using UnityEngine;
 /// </summary>
 public class VisualSensor : Sensor
 {
-    public override void Init(Character character) { }
+    public override void Init(CharacterAi character) { }
 
-    public override void Scan(Character character, MonoBehaviour[] customWorld = null)
+    public override void Scan(CharacterAi character, MonoBehaviour[] customWorld = null)
     {
         if (customWorld == null) return;
 
