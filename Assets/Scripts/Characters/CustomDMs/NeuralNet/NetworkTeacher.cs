@@ -26,7 +26,7 @@ namespace Game.NeuralNet
         }
 
         [Button("Learn")]
-        public void RunLearningCycle(bool debug = true)
+        public void RunLearningCycle(bool debug = false)
         {
             //if expected answer is true, what would be expected calculated value from that layer neuron? It could be any from 0.51 to 1 
             StartCoroutine(RunLearningProcedure(debug));
@@ -109,16 +109,16 @@ namespace Game.NeuralNet
                     learningIteration = 0;
                     while (!Network.RunLearningCycle(_inputs[i].ExpectedAnswer, _learnRate, false))
                     {
-                        Debug.Log("Run learning iteration: " + learningIteration);
+                        if (debug) Debug.Log("Run learning iteration: " + learningIteration);
                         learningIteration++;
                         if(!_learnInOneFrame) yield return null;
                     }
-                    Debug.Log(string.Format("Solution for input {0} - found. Moving to start...", i));
+                    if (debug) Debug.Log(string.Format("Solution for input {0} - found. Moving to start...", i));
                     i = -1;
                 }
                 else
                 {
-                    Debug.Log(string.Format("Input {0} - passed", i));
+                    if(debug) Debug.Log(string.Format("Input {0} - passed", i));
                 }
             }
             Debug.Log("Learning - ended. Time spend: " + (DateTime.Now.Subtract(startTime)).TotalSeconds);
