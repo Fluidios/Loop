@@ -70,4 +70,13 @@ public class Node : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// This is only for debug purposes
+    /// </summary>
+    /// <param name="color"></param>
+    public void Colorize(Color color)
+    {
+        _selfGraphics.color = color;
+    }
 }

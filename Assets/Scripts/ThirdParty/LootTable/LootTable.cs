@@ -9,6 +9,8 @@ public class LootTable<T>
     [SerializeField] private List<LootElement<T>> _table;
     private System.Random _random;
 
+    public T GetFirst() => _table[0].LootReference;
+
     private int RandomInt(int max)
     {
         if(_random == null)

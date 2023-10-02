@@ -9,9 +9,12 @@ public class InitialMapGenerator : GameSystem
 {
     
     private const float c_spawnAnimationSpeed = 25;
-    [SerializeField] private Road _defaultRoadPrefab;
-    [SerializeField] private int _roadCircleRadiusInPersecnts = 40;
+    [SerializeField, Tooltip("Would be sorted on initialization by height")] RoadData[] _heightDependentRoadVariants;
+    [Header("General road cycle settings")]
+    [SerializeField] private int _roadCircleRadiusInPercents = 40;
     [SerializeField] private int _protoQuadsCount = 4;
+
+    [Header("Perlin settings"), SerializeField] private float _perlinSize = 1;
     
     public override bool AsyncInitialization => true;
     public override void Initialize(System.Action initializationEndedCallback)
@@ -19,21 +22,37 @@ public class InitialMapGenerator : GameSystem
         Map _map = SystemsManager.GetSystemOfType<Map>();
         Randomness randomness = SystemsManager.GetSystemOfType<Randomness>();
 
-        List<Vector3Int> roadLoop = new MapGenerator().GenerateRoadLoop(randomness.Random, _map.Size, _roadCircleRadiusInPersecnts, _protoQuadsCount);
+        _heightDependentRoadVariants = _heightDependentRoadVariants.OrderBy(obj => obj.MaxHeight).ToArray();
+        for (int i = 0; i < _heightDependentRoadVariants.Length; i++)
+        {
+            _heightDependentRoadVariants[i].InitRandomness(randomness.Seed + i);
+            if(i == _heightDependentRoadVariants.Length - 1)
+            {
+                //ensure that for every height road variant would exist
+                _heightDependentRoadVariants[_heightDependentRoadVariants.Length - 1].MaxHeight = 1;
+            }
+        }
+
+        List<Vector3Int> roadLoop = new MapGenerator().GenerateRoadLoop(randomness.Random, _map.Size, _roadCircleRadiusInPercents, _protoQuadsCount);
 
         //spawn road along longest loop
-        var road = new List<Road>(); Road roadTile;
+        var road = new List<Road>(); Node node;
         float delay;
         int longestLoopLength = roadLoop.Count;
         for (int i = 0; i < longestLoopLength; i++)
         {
-            var node = _map[roadLoop[i].x, roadLoop[i].z];
+            node = _map[roadLoop[i].x, roadLoop[i].z];
             int id = i;
-            roadTile = SpawnRoad(node);
+            var roadTile = SpawnRoad(node, randomness);
             node.OnLocationUpdated += (newLocation) => _map.UpdateRoad(id, newLocation as Road);
             delay = (float)road.Count / c_spawnAnimationSpeed;
-            roadTile.ShowSpawnAnimation(delay);
-            StartCoroutine(DoWithDelay(() => node.SetSelfGraphicsActive(false), delay));
+
+            StartCoroutine(DoWithDelay(() => {
+                roadTile.gameObject.SetActive(true);
+                roadTile.ShowSpawnAnimation();
+                node.SetSelfGraphicsActive(false);
+            },
+            delay));
             road.Add(roadTile);
         }
 
@@ -41,6 +60,25 @@ public class InitialMapGenerator : GameSystem
 
         //end initialization after animation of last road tiles ends
         StartCoroutine(DoWithDelay(initializationEndedCallback, road.Count / c_spawnAnimationSpeed));
+    }
+
+    [ContextMenu("Draw perlin")]
+    public void DrawPerlinOnMap()
+    {
+        Randomness randomness = SystemsManager.GetSystemOfType<Randomness>();
+        Map _map = SystemsManager.GetSystemOfType<Map>();
+        for (int x = 0; x < _map.Size; x++)
+        {
+            for (int y = 0; y < _map.Size; y++)
+            {
+                _map[x, y].Colorize(Color.HSVToRGB(0, 0, GetHeightForNodeAtPosition(x,y, randomness)));
+            }
+        }
+    }
+    private float GetHeightForNodeAtPosition(int x, int y, Randomness randomness)
+    {
+        float offset = randomness.Seed / int.MaxValue;
+        return Mathf.PerlinNoise((x + offset) / _perlinSize, (y+offset) / _perlinSize);
     }
 
     public class MapGenerator
@@ -156,9 +194,25 @@ public class InitialMapGenerator : GameSystem
             return neighbourCoords;
         }
     }
-    private Road SpawnRoad(Node node)
+    private Road SpawnRoad(Node node, Randomness randomness)
     {
-        var road = Instantiate(_defaultRoadPrefab, node.GridPosition, Quaternion.identity, node.transform);
+        //select the apropriate variant based on ground height
+        float height = GetHeightForNodeAtPosition(node.GridPosition.x, node.GridPosition.z, randomness);
+        int selectedRoadVariant = -1;
+        for (int i = 0; i < _heightDependentRoadVariants.Length; i++)
+        {
+            if (_heightDependentRoadVariants[i].MaxHeight <= height) continue;
+            else
+            {
+                selectedRoadVariant = i;
+                break;
+            }
+        }
+        if(selectedRoadVariant < 0) selectedRoadVariant = _heightDependentRoadVariants.Length - 1;
+
+        //spawn road tile
+        var road = Instantiate(_heightDependentRoadVariants[selectedRoadVariant].RoadPrefab, node.GridPosition, Quaternion.identity, node.transform);
+        road.gameObject.SetActive(false);
         node.ReplaceLocation(road, false);
         return road;
     }
@@ -166,5 +220,27 @@ public class InitialMapGenerator : GameSystem
     {
         yield return new WaitForSeconds(delay);
         callback();
+    }
+
+    [System.Serializable]
+    struct RoadData
+    {
+        [Range(0,1)] public float MaxHeight;
+        [SerializeField] LootTable<Road> _roadPrefabVariants;
+        public void InitRandomness(int seed)
+        {
+            _roadPrefabVariants.ProvideSpecificRandomnessSeed(seed);
+        }
+        public Road RoadPrefab
+        {
+            get
+            {
+                if(_roadPrefabVariants.GetLoot(out Road road) == LootTable<Road>.LootRollResult.DroppedLessThanRequested)
+                {
+                    road = _roadPrefabVariants.GetFirst();
+                }
+                return road;
+            }
+        }
     }
 }

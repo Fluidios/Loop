@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class Randomness : GameSystem
 {
     [SerializeField] private int _forcedSeed = -1;
-    public int Seed { get; private set; }
+    [SerializeField, ReadOnly] private int _seed;
+    public int Seed => _seed;
     public System.Random Random { get; private set; }
 
     public override bool AsyncInitialization => false;
@@ -13,9 +15,9 @@ public class Randomness : GameSystem
     public override void Initialize(System.Action initializationEndedCallback)
     {
         if (_forcedSeed < 0)
-            Seed = UnityEngine.Random.Range(0, int.MaxValue);
+            _seed = UnityEngine.Random.Range(0, int.MaxValue);
         else
-            Seed = _forcedSeed;
+            _seed = _forcedSeed;
         Random = new System.Random(Seed);
     }
     public int UInt()

@@ -329,9 +329,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afee5c54e7c113446a32b7f65ea17ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultRoadPrefab: {fileID: 4480945663081273938, guid: db38628a7a5eeab4da6e8c330992c528, type: 3}
-  _roadCircleRadiusInPersecnts: 30
+  _heightDependentRoadVariants:
+  - MaxHeight: 0.589
+    _roadPrefabVariants:
+      _table:
+      - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
+        DropChance: 6.4
+      - LootReference: {fileID: 4480945663081273938, guid: 5b83c05d24de37a449213db77de3bc1e, type: 3}
+        DropChance: 16
+      - LootReference: {fileID: 4480945663081273938, guid: db38628a7a5eeab4da6e8c330992c528, type: 3}
+        DropChance: 100
+  - MaxHeight: 0.739
+    _roadPrefabVariants:
+      _table:
+      - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
+        DropChance: 2.6
+      - LootReference: {fileID: 4480945663081273938, guid: dc3312af4fdf0424db3e9c0fcccbd7fd, type: 3}
+        DropChance: 100
+  - MaxHeight: 1
+    _roadPrefabVariants:
+      _table:
+      - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
+        DropChance: 20.6
+      - LootReference: {fileID: 4480945663081273938, guid: 75711ef4c752fe648a4d3a464466b5b9, type: 3}
+        DropChance: 100
+  _roadCircleRadiusInPercents: 25
   _protoQuadsCount: 4
+  _perlinSize: 10
 --- !u!4 &403623245
 Transform:
   m_ObjectHideFlags: 0
@@ -1884,7 +1908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28f8a88a60c92a46adc054d39ffbbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forcedSeed: -1
+  _forcedSeed: 1454614335
+  _seed: 0
 --- !u!1 &2110186632
 GameObject:
   m_ObjectHideFlags: 0

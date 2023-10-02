@@ -20,9 +20,13 @@ public abstract class Location : MonoBehaviour
     public void ShowSpawnAnimation(float delay = 0)
     {
         if (delay > 0)
+        {
             StartCoroutine(DoWithDelay(() => _animations.Play(_spawnClip.name), delay));
+        }
         else
+        {
             _animations.Play(_spawnClip.name);
+        }
         GroundGraphics.sortingOrder = -1;
     }
 
