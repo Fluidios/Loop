@@ -20,7 +20,8 @@ public class EventsVisualizer : GameSystem
     public void HideEventVisual<T>(T spawnedEventVisual, Action callback) where T : RoadEventGraphics
     {
         StartCoroutine(MoveEventVisual(false, spawnedEventVisual.RectTransform, () => {
-            callback();
+            callback(); 
+            spawnedEventVisual.Disable();
             Destroy(spawnedEventVisual.gameObject);
         }));
         ActiveEventGraphics = null;

@@ -8,6 +8,7 @@ public class CharacterAi : MonoBehaviour
 {
     [SerializeField, Tooltip("All sensors wich provides ai with data about environment")] private Sensor[] _sensorsList;
     [SerializeField, Tooltip("Abstract class which provides a plan of actions based on sensors data")] private DecisionMaker _decisionMaker;
+    [SerializeField] private string AttachedPersonality;
 
     /// <summary>
     /// runs an actions from the _plan
@@ -34,12 +35,23 @@ public class CharacterAi : MonoBehaviour
     {
         _character = character;
         _personalMemory = SystemsManager.GetSystemOfType<MemoryBank>().GetPersonalMemoryBlackboard(this);
+        if(AttachedPersonality.Length > 0 )
+            _personalMemory.Set("Personality", SystemsManager.GetSystemOfType<Society>().GetFirstPersonality());
+        else
+            _personalMemory.Set("Personality", SystemsManager.GetSystemOfType<Society>().GetFreePersonality());
         foreach (var sensor in _sensorsList)
         {
             sensor.Init(this);
         }
         _decisionMaker.Init(character);
         _actionsRunner.Init(character);
+    }
+    public void Disable()
+    {
+        if (_personalMemory.TryGetGeneric("Personality", out CharacterPersonality personality, null))
+        {
+            SystemsManager.GetSystemOfType<Society>().ReleasePersonality(personality);
+        }
     }
     /// <summary>
     /// General method to update a logic of character

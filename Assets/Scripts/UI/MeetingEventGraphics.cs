@@ -100,6 +100,18 @@ public class MeetingEventGraphics : RoadEventGraphics
             throw new Exception("Cant add ui. Provided character is not on the scene!");
         }
     }
+
+    public override void Disable()
+    {
+        foreach (var item in _npcSideCharacters)
+        {
+            item.Disable();
+        }
+        foreach (var item in _playerSideCharacters)
+        {
+            item.Disable();
+        }
+    }
     public void StartTargetCharacterSelection(MeetingEventSide whichSideToSearchForTarget, bool searchAmongAliveTargets, Action<Character> onTargetSelected)
     {
         _sideToSelectCharacter = whichSideToSearchForTarget;

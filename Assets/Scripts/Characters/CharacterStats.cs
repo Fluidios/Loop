@@ -19,4 +19,8 @@ public class CharacterStats
     {
         Health.Reset();
     }
+
+    public void OnDisable()
+    {
+    }
 }

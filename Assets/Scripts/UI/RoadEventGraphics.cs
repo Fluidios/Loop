@@ -17,4 +17,6 @@ public class RoadEventGraphics : MonoBehaviour
             return _rectTransform;
         }
     }
+
+    public virtual void Disable() { }
 }

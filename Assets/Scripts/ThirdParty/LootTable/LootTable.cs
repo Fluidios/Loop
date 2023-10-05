@@ -21,11 +21,11 @@ public class LootTable<T>
     public LootRollResult GetLoot(out T loot)
     {
         float rValue = RandomInt(100);
-        List<T> possibleValues = new List<T>();
+        List<LootElement<T>> possibleValues = new List<LootElement<T>>();
         foreach (var item in _table)
         {
             if (rValue <= item.DropChance)
-                possibleValues.Add(item.LootReference);
+                possibleValues.Add(item);
         }
         if (possibleValues.Count == 0)
         {
@@ -34,7 +34,9 @@ public class LootTable<T>
         }
         else
         {
-            loot = possibleValues[RandomInt(possibleValues.Count)];
+            int r = RandomInt(possibleValues.Count);
+            loot = possibleValues[r].LootReference;
+            if (possibleValues[r].CanBeDroppedOnlyOnce) _table.Remove(possibleValues[r]);
             return LootRollResult.Success;
         }
     }
@@ -66,7 +68,7 @@ public class LootTable<T>
             Debug.LogError("Strange loot drop chances found...");
             return;
         }
-
+        if(_table == null) _table = new List<LootElement<T>>();
        _table.Add(new LootElement<T> { LootReference = loot, DropChance = dropChance });
     }
     public int Length
@@ -87,5 +89,6 @@ public class LootTable<T>
 public class LootElement<T>
 {
     public T LootReference;
+    public bool CanBeDroppedOnlyOnce = false;
     [Range(0.1f, 100f)]public float DropChance = 0.1f;
 }

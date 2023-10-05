@@ -1,6 +1,7 @@
 using Codice.CM.Client.Differences;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,10 +15,10 @@ public class GeneratorPreset : ScriptableObject
     public float ChanceToKnowTheName;
     public float ChanceToKnowActualLocation;
 
-    public string GetRandomName()
+    public string GetRandomName(List<string> usedNames)
     {
         var lines = new List<string>(Names.text.Split('\n'));
-
+        lines = lines.Except(usedNames).ToList();
         int randomIndex = Random.Range(0, lines.Count);
         return lines[randomIndex];
     }

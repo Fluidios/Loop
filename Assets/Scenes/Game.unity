@@ -300,6 +300,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167273780}
   m_CullTransparentMesh: 1
+--- !u!1 &355097453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355097455}
+  - component: {fileID: 355097454}
+  m_Layer: 0
+  m_Name: Society
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &355097454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355097453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b35a6a6a178e24dad617b99adbf9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalWorldPopulation: 5
+  _charactersGeneratorPreset: {fileID: 11400000, guid: 5b272e64aeab29647a30111c1d950063, type: 2}
+--- !u!4 &355097455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355097453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1762695004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &403623243
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,28 +376,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heightDependentRoadVariants:
-  - MaxHeight: 0.589
+  - MaxHeight: 0.407
     _roadPrefabVariants:
       _table:
       - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
+        CanBeDroppedOnlyOnce: 0
         DropChance: 6.4
+      - LootReference: {fileID: 4480945663081273938, guid: fc3070defb35ab340b9db111cb101a3e, type: 3}
+        CanBeDroppedOnlyOnce: 1
+        DropChance: 9.3
       - LootReference: {fileID: 4480945663081273938, guid: 5b83c05d24de37a449213db77de3bc1e, type: 3}
+        CanBeDroppedOnlyOnce: 1
+        DropChance: 16
+      - LootReference: {fileID: 4480945663081273938, guid: 7fb731f53f610b74d9005b33fc8b835e, type: 3}
+        CanBeDroppedOnlyOnce: 1
+        DropChance: 16
+      - LootReference: {fileID: 4480945663081273938, guid: b44f4b2918e1b4b4abcf85f8fe0fdc76, type: 3}
+        CanBeDroppedOnlyOnce: 1
         DropChance: 16
       - LootReference: {fileID: 4480945663081273938, guid: db38628a7a5eeab4da6e8c330992c528, type: 3}
+        CanBeDroppedOnlyOnce: 0
         DropChance: 100
-  - MaxHeight: 0.739
+  - MaxHeight: 0.67
     _roadPrefabVariants:
       _table:
       - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
-        DropChance: 2.6
+        CanBeDroppedOnlyOnce: 0
+        DropChance: 5.5
       - LootReference: {fileID: 4480945663081273938, guid: dc3312af4fdf0424db3e9c0fcccbd7fd, type: 3}
+        CanBeDroppedOnlyOnce: 0
         DropChance: 100
   - MaxHeight: 1
     _roadPrefabVariants:
       _table:
+      - LootReference: {fileID: 4480945663081273938, guid: 5c4ac6df6fc355a468f7ea03ed662dec, type: 3}
+        CanBeDroppedOnlyOnce: 1
+        DropChance: 15
       - LootReference: {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
-        DropChance: 20.6
+        CanBeDroppedOnlyOnce: 0
+        DropChance: 10
       - LootReference: {fileID: 4480945663081273938, guid: 75711ef4c752fe648a4d3a464466b5b9, type: 3}
+        CanBeDroppedOnlyOnce: 0
         DropChance: 100
   _roadCircleRadiusInPercents: 25
   _protoQuadsCount: 4
@@ -1197,6 +1262,11 @@ MonoBehaviour:
   _library:
   - {fileID: 4480945663081273938, guid: db38628a7a5eeab4da6e8c330992c528, type: 3}
   - {fileID: 4480945663081273938, guid: dc3312af4fdf0424db3e9c0fcccbd7fd, type: 3}
+  - {fileID: 4480945663081273938, guid: 75711ef4c752fe648a4d3a464466b5b9, type: 3}
+  - {fileID: 4480945663081273938, guid: fc3070defb35ab340b9db111cb101a3e, type: 3}
+  - {fileID: 4480945663081273938, guid: 75806062b4a11924eb9ccff7ab384739, type: 3}
+  - {fileID: 4480945663081273938, guid: 5c4ac6df6fc355a468f7ea03ed662dec, type: 3}
+  - {fileID: 4480945663081273938, guid: 5b83c05d24de37a449213db77de3bc1e, type: 3}
 --- !u!1 &1556575087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1501,7 @@ MonoBehaviour:
   - {fileID: 1119904930}
   - {fileID: 1490333940}
   - {fileID: 71437082}
+  - {fileID: 355097454}
 --- !u!4 &1762695004
 Transform:
   m_ObjectHideFlags: 0
@@ -1454,6 +1525,7 @@ Transform:
   - {fileID: 1354119493}
   - {fileID: 1490333939}
   - {fileID: 71437081}
+  - {fileID: 355097455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793104986
@@ -1908,7 +1980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28f8a88a60c92a46adc054d39ffbbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forcedSeed: 1454614335
+  _forcedSeed: 1315686475
   _seed: 0
 --- !u!1 &2110186632
 GameObject:
@@ -2051,5 +2123,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
-  - {fileID: 1762695004}
   - {fileID: 510385627}
+  - {fileID: 1762695004}

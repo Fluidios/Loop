@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724d7716e992cd54ba17b0f95429e095, type: 3}
   m_Name: Imperial City
   m_EditorClassIdentifier: 
+  _populationRating: 5
+  _inhabitingArchetypes:
+    _table:
+    - LootReference: {fileID: 11400000, guid: da1f5ed3895ad4a48bcbd06d3f3481c8, type: 2}
+      CanBeDroppedOnlyOnce: 0
+      DropChance: 100

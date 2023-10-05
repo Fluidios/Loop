@@ -81,7 +81,10 @@ public class SystemsManager : MonoBehaviour
                 _gameSystems[i].Initialize(ContinueSystemsInitialization);
                 break;
             }
-            if(i == _gameSystems.Length-1) _allSystemsInitialized = true;
+        }
+        if(_currentSystem == _gameSystems.Length-1)
+        {
+            _allSystemsInitialized = true;
         }
     }
 }

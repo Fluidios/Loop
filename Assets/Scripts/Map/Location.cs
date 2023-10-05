@@ -5,14 +5,15 @@ using UnityEngine;
 
 public abstract class Location : MonoBehaviour
 {
+    [SerializeField] private LocationReference _reference;
     [SerializeField] private Animation _animations;
     [SerializeField] private AnimationClip _spawnClip;
     [SerializeField] private SpriteRenderer _groundGraphics;
     public string Name
     {
-        get { return name; }
-        set { name = value; }
+        get { return _reference.name; }
     }
+    public LocationReference Reference => _reference;
     public SpriteRenderer GroundGraphics
     {
         get { return _groundGraphics; }

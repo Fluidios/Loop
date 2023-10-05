@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7648883754641229743}
   - component: {fileID: 1744507741084120885}
   - component: {fileID: 4535706281509030346}
+  - component: {fileID: 5770422129133756767}
+  - component: {fileID: 1104620030366252428}
+  - component: {fileID: 398087461684897000}
   m_Layer: 5
   m_Name: Actions
   m_TagString: Untagged
@@ -71,6 +74,45 @@ MonoBehaviour:
   - {fileID: 7400000, guid: d92516fcc796e9845b3e693e049bdec2, type: 2}
   - {fileID: 7400000, guid: 6967ee94792405f418e17ac87fd3b8ef, type: 2}
   - {fileID: 7400000, guid: 4ba0307980e9bf346a62b7fea2c15251, type: 2}
+--- !u!114 &5770422129133756767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344438000418959030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17153828c91f2204aa8d46f551baa917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speak: {fileID: 1104620030366252428}
+--- !u!114 &1104620030366252428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344438000418959030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8626b582aeff40c4693fbc7b6fbdf07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speakFormatter: '{0}'
+  _speachBublePrefab: {fileID: -4328128865552819205, guid: c42f72640d9591544a49b68f9529e444, type: 3}
+--- !u!114 &398087461684897000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344438000418959030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ca705af5877d9438c5806a86137f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5175319298584083339
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sensorsList: []
   _decisionMaker: {fileID: 6055915467994662039}
+  AttachedPersonality: 'Ezra '
 --- !u!114 &6055915467994662039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +203,8 @@ MonoBehaviour:
   _uiPrefab: {fileID: 7670528153793193611, guid: f546ecb4ec3bfd742852b887ca7ad4e4, type: 3}
   _availableActions:
   - {fileID: 1744507741084120885}
+  - {fileID: 5770422129133756767}
+  - {fileID: 398087461684897000}
   _debugMode: 1
 --- !u!1 &5554018406201819864
 GameObject:

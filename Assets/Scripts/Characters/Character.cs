@@ -28,6 +28,11 @@ public class Character : MonoBehaviour, IVisuallyObservable, ISelectable
         _ai.Init(this);
         _characterStats.Reset();
     }
+    public void Disable()
+    {
+        _ai.Disable();
+        _characterStats.OnDisable();
+    }
 
     #region IVisuallyObservable
     public bool TryScan<T>(out T value) where T:class

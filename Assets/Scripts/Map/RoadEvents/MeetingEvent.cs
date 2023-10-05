@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
 {
+    public static MeetingEvent ActiveMeetingEvent;
     [SerializeField] private Character[] _eventNpcMembers;
     [SerializeField] private ExitEventCondition<MeetingEvent>[] _exitConditions;
     public HashSet<Character> EventNpcMembers { get; private set; }
@@ -20,8 +21,8 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
     protected override void InitializeGraphics(MeetingEventGraphics graphics)
     {
         List<Character> characters = new List<Character>();
-        EventNpcMembers = graphics.SpawnNPCs(_eventNpcMembers);
         EventPlayerSideMembers = graphics.SpawnPlayerSquad(PlayerController.PlayerSquadPrefabs);
+        EventNpcMembers = graphics.SpawnNPCs(_eventNpcMembers);
         
         foreach (Character character in EventPlayerSideMembers) { character.Stats.BelongToPlayerTeam = true; }
 
@@ -32,6 +33,8 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
 
         _myGraphics = graphics;
 
+        ActiveMeetingEvent = this;
+
         StartCoroutine(DoWithDelay(1, UpdateEvent));
     }
 
@@ -39,7 +42,8 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
     {
         if (EventPassed())
         {
-            SystemsManager.GetSystemOfType<EventsVisualizer>().HideEventVisual(_myGraphics, () => Passed = true); 
+            SystemsManager.GetSystemOfType<EventsVisualizer>().HideEventVisual(_myGraphics, () => Passed = true);
+            ActiveMeetingEvent = null;
         }
         else StartCoroutine(UpdateEventRoutine());
     }
@@ -54,6 +58,7 @@ public class MeetingEvent : GraphicRoadEvent<MeetingEventGraphics>
         }
         return false;
     }
+
     /// <summary>
     /// for the saftey reason, since all characters could have only imidiate actions, which would cause endless loop of updates in one frame
     /// </summary>

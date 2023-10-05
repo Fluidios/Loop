@@ -283,6 +283,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Environment-1_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 171
+        width: 266
+        height: 178
+      alignment: 9
+      pivot: {x: 0.45945075, y: 0.124304526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a2c95223bd88d046a6142924ec8551d
+      internalID: -129061731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Environment-1_10
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 0
+        width: 163
+        height: 202
+      alignment: 9
+      pivot: {x: 0.51176834, y: 0.11540455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e6e0f3133c1cf4b9829acbe071c673
+      internalID: 196879886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Environment-1_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 4
+        width: 80
+        height: 153
+      alignment: 9
+      pivot: {x: 0.4520443, y: 0.058055107}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5316580e80bd2074d9f10b3f59ab5a87
+      internalID: -201691891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -296,6 +359,8 @@ TextureImporter:
     nameFileIdTable:
       Environment-1_0: 682325972
       Environment-1_1: 1780890637
+      Environment-1_10: 196879886
+      Environment-1_11: -201691891
       Environment-1_2: 101863159
       Environment-1_3: 242497533
       Environment-1_4: 1574375120
@@ -303,6 +368,7 @@ TextureImporter:
       Environment-1_6: -1203012649
       Environment-1_7: -489921748
       Environment-1_8: 2106477550
+      Environment-1_9: -129061731
       Trees&Rocks_0: 1367309767
       Trees&Rocks_1: -1663570418
       Trees&Rocks_2: -756450920

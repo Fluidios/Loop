@@ -34,26 +34,26 @@ public class KnownCharacter
     {
 #if UNITY_EDITOR
         show = EditorGUILayout.Foldout(show, ReferenceName);
-        if(show)
+        if (show)
         {
             EditorGUI.indentLevel++;
             EditorGUI.BeginChangeCheck();
             KnownName = EditorGUILayout.TextField("Known name: ", KnownName);
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Connected experience: ", GUILayout.Width(200));
-            ConnectedExperience = EditorGUILayout.IntSlider(ConnectedExperience, -100,100);
+            ConnectedExperience = EditorGUILayout.IntSlider(ConnectedExperience, -100, 100);
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Importance: ", GUILayout.Width(200));
             Importance = EditorGUILayout.IntSlider(Importance, 0, 100);
             EditorGUILayout.EndHorizontal();
 
-            if(_lastKnownLocation == null)
+            if (_lastKnownLocation == null && LastKnownLocation != string.Empty)
             {
                 _lastKnownLocation = AssetDatabase.LoadAssetAtPath<LocationReference>(string.Format("Assets/Resources/CharactersGenerator/LocationReferences/{0}.asset", LastKnownLocation));
             }
             EditorGUILayout.BeginHorizontal();
-            if(_lastKnownLocation != null)
+            if (_lastKnownLocation != null)
             {
                 _lastKnownLocation = (LocationReference)EditorGUILayout.ObjectField("Last known location:", _lastKnownLocation, typeof(LocationReference), true);
             }
@@ -65,7 +65,8 @@ public class KnownCharacter
             EditorGUILayout.EndHorizontal();
             if (EditorGUI.EndChangeCheck())
             {
-                LastKnownLocation = _lastKnownLocation.name;
+                if(_lastKnownLocation != null) 
+                    LastKnownLocation = _lastKnownLocation.name;
                 return true;
             }
             EditorGUI.indentLevel--;

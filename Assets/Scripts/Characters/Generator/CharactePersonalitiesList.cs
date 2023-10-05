@@ -6,13 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public class CharactePersonalitiesList
 {
+    public const string c_defaultPersonality = "Default Personality";
     public static Action<object> WasUpdated;
     public List<string> SavedPersonalities;
     public int SelectedIndex = 0;
 
     public CharactePersonalitiesList()
     {
-        SavedPersonalities = new List<string> { "Default Personality" };
+        SavedPersonalities = new List<string> { c_defaultPersonality };
         SelectedIndex = 0;
     }
 
@@ -41,7 +42,10 @@ public class CharactePersonalitiesList
     {
         return SavedPersonalities.Contains(name);
     }
-
+    public void Remove(string name)
+    {
+        SavedPersonalities.Remove(name);
+    }
     public CharacterPersonality LoadSelectedPersonality()
     {
         return ES3.Load(string.Format("Saved-CP:{0}", SavedPersonalities[SelectedIndex]), new CharacterPersonality("Default Personality")); ;
@@ -56,12 +60,12 @@ public class CharactePersonalitiesList
         SavedPersonalities[SelectedIndex] = personality.Name;
         Save(this);
     }
-    public void AddNewPersonality(CharacterPersonality personality)
+    public void AddNewPersonality(CharacterPersonality personality, bool saveImmediately = true)
     {
         SavedPersonalities.Add(personality.Name);
         ES3.Save(string.Format("Saved-CP:{0}", personality.Name), personality);
         SavedPersonalities[SavedPersonalities.Count-1] = personality.Name;
-        Save(this);
+        if(saveImmediately) Save(this);
     }
     public void DeleteSelectedPersonality()
     {

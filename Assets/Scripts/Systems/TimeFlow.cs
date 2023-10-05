@@ -6,7 +6,6 @@ using UnityEngine;
 public class TimeFlow : GameSystem
 {
     [SerializeField] private int _dayLength = 4;
-    [SerializeField] private UiDependentDM _playerController;
     private int _currentDay = 1;
     private int _dayPartsAmount;
     private int _currentRoadTile;

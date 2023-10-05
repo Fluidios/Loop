@@ -36,14 +36,15 @@ public class InitialMapGenerator : GameSystem
         List<Vector3Int> roadLoop = new MapGenerator().GenerateRoadLoop(randomness.Random, _map.Size, _roadCircleRadiusInPercents, _protoQuadsCount);
 
         //spawn road along longest loop
-        var road = new List<Road>(); Node node;
+        var road = new List<Road>();
         float delay;
         int longestLoopLength = roadLoop.Count;
         for (int i = 0; i < longestLoopLength; i++)
         {
-            node = _map[roadLoop[i].x, roadLoop[i].z];
+            var node = _map[roadLoop[i].x, roadLoop[i].z];
             int id = i;
             var roadTile = SpawnRoad(node, randomness);
+            _map.AddLocation(roadTile);
             node.OnLocationUpdated += (newLocation) => _map.UpdateRoad(id, newLocation as Road);
             delay = (float)road.Count / c_spawnAnimationSpeed;
 
@@ -209,9 +210,9 @@ public class InitialMapGenerator : GameSystem
             }
         }
         if(selectedRoadVariant < 0) selectedRoadVariant = _heightDependentRoadVariants.Length - 1;
-
+        var r = _heightDependentRoadVariants[selectedRoadVariant].RoadPrefab;
         //spawn road tile
-        var road = Instantiate(_heightDependentRoadVariants[selectedRoadVariant].RoadPrefab, node.GridPosition, Quaternion.identity, node.transform);
+        var road = Instantiate(r, node.GridPosition, Quaternion.identity, node.transform);
         road.gameObject.SetActive(false);
         node.ReplaceLocation(road, false);
         return road;

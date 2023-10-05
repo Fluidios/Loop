@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724d7716e992cd54ba17b0f95429e095, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
+  _populationRating: 0
+  _inhabitingArchetypes:
+    _table: []

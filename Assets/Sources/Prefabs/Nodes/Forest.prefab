@@ -143,13 +143,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3198a87e93e804f9a2cbeed3722956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _reference: {fileID: 11400000, guid: b129c89b2c992c44490d9b4d8c29756e, type: 2}
   _animations: {fileID: 3213828655241952402}
   _spawnClip: {fileID: 7400000, guid: cc9b0fb4427d0ba408927a6a906e1d88, type: 2}
   _groundGraphics: {fileID: 3209845507731567832}
   _canBeReplacedByOtherRoad: 0
   _possibleEvents:
     _table:
+    - LootReference: {fileID: 6376500886087704965, guid: d6e5c10d7b40f844baa85af385759a08, type: 3}
+      CanBeDroppedOnlyOnce: 0
+      DropChance: 100
+    - LootReference: {fileID: 6376500886087704965, guid: 80cb24a3ae0751447957d1e971c13168, type: 3}
+      CanBeDroppedOnlyOnce: 0
+      DropChance: 0.1
+    - LootReference: {fileID: 6376500886087704965, guid: 5991b70e6239a594dbff077f99e8d5bd, type: 3}
+      CanBeDroppedOnlyOnce: 0
+      DropChance: 0.1
     - LootReference: {fileID: -4079481007348930806, guid: 4850b8240b69f63459bec13069a3683b, type: 3}
+      CanBeDroppedOnlyOnce: 0
       DropChance: 100
 --- !u!111 &3213828655241952402
 Animation:
