@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 4885558151891188387}
   - component: {fileID: -8702934615174424267}
   - component: {fileID: 2615884535369569059}
+  - component: {fileID: -5087336372206539458}
   - component: {fileID: 4334366730872950614}
   m_Layer: 5
   m_Name: Wolf
@@ -410,6 +411,7 @@ MonoBehaviour:
   _sensorsList:
   - {fileID: 2615884535369569059}
   _decisionMaker: {fileID: 4334366730872950614}
+  AttachedPersonality: 
 --- !u!114 &2615884535369569059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +422,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bedfe75c6ce0dc40a9f5cb664ea5e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recognizers:
+  - {fileID: -5087336372206539458}
+--- !u!114 &-5087336372206539458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903468401864521979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e22aea9c13438f47ae5a8a09b92bc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4334366730872950614

@@ -2,19 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 /// <summary>
 /// Only observing custom world, provided by character
 /// </summary>
 public class VisualSensor : Sensor
 {
-    public override void Init(CharacterAi character) { }
+    [SerializeField] private VisualRecognizer[] _recognizers;
+    public override void Init(CharacterAi character) { } 
 
     public override void Scan(CharacterAi character, MonoBehaviour[] customWorld = null)
     {
-        if (customWorld == null) return;
+        if (customWorld == null)
+        {
+            Debug.LogWarning("VisualSensor can only handle customWorld for now");
+            return;
+        }
 
-        int entitiesObserved = 0;
+        bool observableRecognized;
         foreach (var m in customWorld)
         {
             if (m.gameObject == this.gameObject) continue;
@@ -22,13 +28,16 @@ public class VisualSensor : Sensor
             var observable = m as IVisuallyObservable;
             if(observable != null)
             {
-                if (observable.TryScan<Character>(out var observedCharacter))
+                observableRecognized = false;
+                foreach(VisualRecognizer recognizer in _recognizers)
                 {
-                    character.Memory.Set(observedCharacter.name, observedCharacter);
-                    entitiesObserved++;
+                    observableRecognized = recognizer.TryRecognizeAndSaveToMemory(observable, character.Memory);
+                    if (observableRecognized) break;
                 }
-                else 
+
+                if (!observableRecognized)
                 {
+                    //give the character a chance to learn to recognize such objects in the future.
                     object unknownObservable = observable.Scan();
                     character.Memory.Set(unknownObservable.GetType().Name, unknownObservable);
                 }
